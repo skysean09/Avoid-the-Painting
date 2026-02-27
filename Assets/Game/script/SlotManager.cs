@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class SlotManager : MonoBehaviour
 {
-    public static SlotManager instance;
     public List<string> hex = new List<string>()
     {
         "#E7E6F2",
@@ -13,11 +12,34 @@ public class SlotManager : MonoBehaviour
         "#51A52A",
         "#197B14"
     };
-    public Dictionary<Vector3, SlotInfo> slotLevel;
 
-    public void LevelUp(Vector3 pos)
+
+    public static SlotManager instance;
+    public Dictionary<Vector2Int, SlotInfo> slotInfo =  new();
+
+    private void Awake()
     {
-        SlotInfo slot = slotLevel[pos];
+        instance = this;
+        slotInfo.Clear();
+        for (int x = 1; x < Setting.gridSize +1; x++)
+        {
+            for (int y = 1; y < Setting.gridSize +1; y++)
+            {
+                Vector2Int pos = new Vector2Int(x, y);
+                SlotInfo slotinfo = new SlotInfo()
+                {
+                    level = 0,
+                    state = Item.None
+                };
+
+                SlotManager.instance.slotInfo[pos] = slotinfo;
+            }
+        }
+    }
+
+    public void LevelUp(Vector2Int pos)
+    {
+        SlotInfo slot = slotInfo[pos];
         slot.level++;
         if(slot.level > hex.Count - 1)
         {
@@ -25,7 +47,7 @@ public class SlotManager : MonoBehaviour
         }
         else if (ColorUtility.TryParseHtmlString(hex[slot.level], out Color color))
         {
-            slot.image.color = color;
+            //slot.image.color = color;
         }
     }
 }
@@ -33,6 +55,5 @@ public class SlotManager : MonoBehaviour
 public struct SlotInfo
 {
     public int level;
-    public GameObject slot;
-    public Image image;
+    public Item state;
 }

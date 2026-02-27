@@ -3,10 +3,10 @@ using UnityEngine.InputSystem.Controls;
 
 public class Player : MonoBehaviour
 {
-    Vector3 old_;
-    Vector3 new_;
+    Vector3 mouseOld;
+    Vector3 mouseNew;
+    public Vector2Int pos;
     public static Player instance;
-    Vector2Int pos;
 
     private void Awake()
     {
@@ -17,13 +17,13 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            old_ = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseOld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-        if (Input.GetMouseButtonUp(0) && old_ != null)
+        if (Input.GetMouseButtonUp(0) && mouseOld != null)
         {
-            new_ = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float gap_x = new_.x - old_.x;
-            float gap_y = new_.y - old_.y;
+            mouseNew = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            float gap_x = mouseNew.x - mouseOld.x;
+            float gap_y = mouseNew.y - mouseOld.y;
             if (Mathf.Abs(gap_x) > Mathf.Abs(gap_y)) // 가로
             {
                 if (gap_x > 0) // 오른쪽
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
                     if (pos.x != Setting.gridSize)
                     {
                         this.transform.position += new Vector3(Setting.cellSize, 0, 0);
-                        pos.x++;
+                        pos.x += 1;
                     }
                 }
                 else // 왼쪽
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
                     if (pos.x != 1)
                     {
                         this.transform.position += new Vector3(-Setting.cellSize, 0, 0);
-                        pos.x--;
+                        pos.x -= 1;
                     }
                 }
             }
@@ -47,18 +47,18 @@ public class Player : MonoBehaviour
             {
                 if (gap_y > 0) // 위
                 {
-                    if (pos.y != Setting.gridSize)
+                    if (pos.y != 1)
                     {
                         this.transform.position += new Vector3(0, Setting.cellSize, 0);
-                        pos.y++;
+                        pos.y -= 1;
                     }
                 }
                 else // 아래
                 {
-                    if (pos.y != 1)
+                    if (pos.y != Setting.gridSize)
                     {
                         this.transform.position += new Vector3(0, -Setting.cellSize, 0);
-                        pos.y--;
+                        pos.y += 1;
                     }
                 }
             }
