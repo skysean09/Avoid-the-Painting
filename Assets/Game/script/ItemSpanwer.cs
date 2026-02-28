@@ -22,10 +22,9 @@ public class ItemSpanwer : MonoBehaviour
 
             Vector2Int pos = new Vector2Int(x, y);
 
-            Debug.Log("check Level");
             SlotInfo slot = SlotManager.instance.slotInfo[pos];
 
-            if(slot.level != Setting.maxLevel)
+            if(slot.level != Setting.maxLevel -1)
             {
                 Debug.Log("Drop Painting");
                 Paint(pos);

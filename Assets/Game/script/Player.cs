@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        pos = new Vector2Int(3, 3);
+        pos = new Vector2Int(Setting.gridSize/2 + 1, Setting.gridSize / 2 + 1);
     }
     private void Update()
     {

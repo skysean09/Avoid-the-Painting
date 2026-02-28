@@ -17,6 +17,7 @@ public class Painting : MonoBehaviour
             }
             slot.state = Item.None;
             SlotManager.instance.slotInfo[pos] = slot;
+            SlotManager.instance.SlotLevelUp(pos);
 
             ItemSpanwer.instance.paintNum--;
             Destroy(gameObject);

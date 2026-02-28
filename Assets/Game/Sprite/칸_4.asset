@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Square
+  m_Name: "\uCE78_4"
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 7178339669344822317, guid: a827b222745811f4ea0a62ac752bfee6, type: 3}
+  m_Color: {r: 0.078431375, g: 0.43921572, b: 0.08235294, a: 1}
   m_Transform:
     e00: 1
     e01: 0
