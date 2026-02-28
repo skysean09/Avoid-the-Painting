@@ -15,12 +15,26 @@ public class ItemSpanwer : MonoBehaviour
 
     private void Update()
     {
-        if(paintNum < Setting.paintNum)
+        if(Setting.maxLevelCount < Setting.clearCount && paintNum < Setting.paintNum)
         {
             int x = Random.Range(1, Setting.gridSize+1);
             int y = Random.Range(1, Setting.gridSize+1);
 
-            Paint(new Vector2Int(x,y));
+            Vector2Int pos = new Vector2Int(x, y);
+
+            Debug.Log("check Level");
+            SlotInfo slot = SlotManager.instance.slotInfo[pos];
+
+            if(slot.level != Setting.maxLevel)
+            {
+                Debug.Log("Drop Painting");
+                Paint(pos);
+            }
+        }
+
+        if(Setting.maxLevelCount >= Setting.clearCount)
+        {
+            Debug.Log("Clear");
         }
     }
 

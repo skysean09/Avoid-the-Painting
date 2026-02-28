@@ -11,6 +11,10 @@ public class Painting : MonoBehaviour
         {
             SlotInfo slot = SlotManager.instance.slotInfo[pos];
             slot.level += 1;
+            if(slot.level == Setting.maxLevel)
+            {
+                Setting.maxLevelCount++;
+            }
             slot.state = Item.None;
             SlotManager.instance.slotInfo[pos] = slot;
 

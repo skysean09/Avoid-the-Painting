@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class SlotManager : MonoBehaviour
@@ -37,18 +38,12 @@ public class SlotManager : MonoBehaviour
         }
     }
 
-    public void LevelUp(Vector2Int pos)
+    public List<Tile> slots = new();
+    public Tilemap map;
+    public void UpdateSlot(Vector2Int pos)
     {
         SlotInfo slot = slotInfo[pos];
-        slot.level++;
-        if(slot.level > hex.Count - 1)
-        {
-            //slotLevel.Remove(pos);
-        }
-        else if (ColorUtility.TryParseHtmlString(hex[slot.level], out Color color))
-        {
-            //slot.image.color = color;
-        }
+        
     }
 }
 

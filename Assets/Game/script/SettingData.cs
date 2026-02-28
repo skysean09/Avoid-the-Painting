@@ -6,6 +6,9 @@ public static class Setting
     public static int gridSize = 5;
     public static Vector3 gridPos = new Vector3(0, -100, 0);
 
+    public static int maxLevel = 1;
+    public static int maxLevelCount;
+    public static int clearCount = 25;
     public static int paintNum = 1;
     public static float durationPaint = 5f;
 
